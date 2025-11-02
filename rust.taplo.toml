@@ -1,0 +1,69 @@
+# Rust Project Taplo Configuration
+# Optimized for Rust projects with Cargo.toml files
+#
+# Usage: Copy this file to your Rust project root as `.taplo.toml` or `taplo.toml`
+
+# Include all TOML files, with focus on Cargo files
+include = ["**/*.toml"]
+
+# Exclude Rust-specific build directories
+exclude = [
+  "target/**",           # Rust build output (crucial to exclude)
+  ".cargo/**",           # Cargo home cache
+  "dist/**",             # Distribution output
+  "build/**",            # Build artifacts
+  ".git/**",             # Git directory
+]
+
+# Default formatting for all TOML files
+[formatting]
+align_entries = false           # Git-friendly (no alignment)
+align_comments = true           # Align comments for readability
+array_trailing_comma = true     # Better diffs when dependencies change
+array_auto_expand = true        # Expand arrays in Cargo.toml naturally
+array_auto_collapse = true      # Collapse small arrays
+compact_arrays = true           # Keep small arrays compact
+compact_inline_tables = false   # Expand for readability
+compact_entries = false         # Don't compact entries
+indent_tables = false           # TOML standard
+indent_entries = false          # TOML standard
+inline_table_expand = true      # Prevent overly long lines
+reorder_keys = false            # Preserve Cargo.toml section order (important!)
+reorder_arrays = false          # Preserve dependency order
+column_width = 100              # Match rustfmt default
+allowed_blank_lines = 2         # Allow section separation
+trailing_newline = true         # POSIX compliance
+crlf = false                    # Unix line endings
+
+# Cargo.toml and workspace manifests - schema validation
+[[rule]]
+include = ["Cargo.toml", "**/Cargo.toml"]
+schema = "https://json.schemastore.org/cargo.json"
+
+[rule.formatting]
+# Preserve the conventional Cargo.toml structure
+reorder_keys = false            # CRITICAL: Don't reorder [package], [dependencies], etc.
+array_trailing_comma = true     # Clean diffs when adding dependencies
+align_entries = false           # Git-friendly dependency lists
+
+# Cargo configuration files
+[[rule]]
+include = [".cargo/config.toml", ".cargo/config"]
+# Note: No widely-used schema for .cargo/config.toml yet
+
+[rule.formatting]
+align_entries = true            # Config files benefit from alignment
+reorder_keys = false            # Preserve configuration section order
+
+# Taplo's own configuration
+[[rule]]
+include = ["**/taplo.toml", "**/.taplo.toml"]
+schema = "https://taplo.tamasfe.dev/configuration/config-schema.json"
+
+# Example: Custom project configuration files
+# Uncomment and adjust for your project-specific TOML files
+# [[rule]]
+# include = ["config/**/*.toml"]
+# [rule.formatting]
+# align_entries = true          # Config files often benefit from alignment
+# reorder_keys = true            # Alphabetical keys in config files

@@ -59,15 +59,18 @@ crlf = false
 # Schema associations for validation
 [[rule]]
 include = ["**/Cargo.toml"]
-schema = "https://json.schemastore.org/cargo.json"
+schema.enabled = true
+schema.url = "https://json.schemastore.org/cargo.json"
 
 [[rule]]
 include = ["**/pyproject.toml"]
-schema = "https://json.schemastore.org/pyproject.json"
+schema.enabled = true
+schema.url = "https://json.schemastore.org/pyproject.json"
 
 [[rule]]
 include = ["**/taplo.toml", "**/.taplo.toml"]
-schema = "https://json.schemastore.org/taplo.json"
+schema.enabled = true
+schema.url = "https://json.schemastore.org/taplo.json"
 
 # Custom formatting rules per file pattern
 [[rule]]

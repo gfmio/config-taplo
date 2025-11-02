@@ -43,9 +43,8 @@ trailing_newline = true       # POSIX compliance
 crlf = false                  # Unix line endings (use true for Windows teams)
 
 # Deno configuration
-[[rule]]
-include = ["deno.json", "deno.jsonc"]
-# Note: These are JSON files, not TOML, but listed for reference
+# Note: Deno projects often use "deno.json" or "deno.jsonc" for configuration.
+# Taplo does not process these files, but they are listed here for reference.
 
 # Biome configuration (if using TOML)
 [[rule]]

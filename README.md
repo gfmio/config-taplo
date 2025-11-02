@@ -148,7 +148,7 @@ All templates include schema validation where available:
 
 - `Cargo.toml` → `https://json.schemastore.org/cargo.json`
 - `pyproject.toml` → `https://json.schemastore.org/pyproject.json`
-- `taplo.toml` → `https://taplo.tamasfe.dev/configuration/config-schema.json`
+- `taplo.toml` → `https://json.schemastore.org/taplo.json`
 
 This enables:
 

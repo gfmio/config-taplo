@@ -155,7 +155,8 @@ include = ["**/*.toml"]
 ```toml
 [[rule]]
 include = ["Cargo.toml", "**/Cargo.toml"]
-schema = "https://json.schemastore.org/cargo.json"
+schema.enabled = true
+schema.url = "https://json.schemastore.org/cargo.json"
 [rule.formatting]
 reorder_keys = false  # Preserve Cargo.toml section order
 ```
@@ -165,7 +166,8 @@ reorder_keys = false  # Preserve Cargo.toml section order
 ```toml
 [[rule]]
 include = ["pyproject.toml"]
-schema = "https://json.schemastore.org/pyproject.json"
+schema.enabled = true
+schema.url = "https://json.schemastore.org/pyproject.json"
 ```
 
 **Monorepos**:
@@ -249,7 +251,8 @@ Remember that Taplo configuration affects:
 
 ### Schema Integration
 
-- `schema`: URL or file path to JSON Schema
+- `schema.enabled`: enable schema validation
+- `schema.url` and `schema.path`: URL or file path respectively to JSON Schema
 - Enables validation and IDE autocomplete
 - Use SchemaStore URLs for standard file types
 

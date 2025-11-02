@@ -200,7 +200,8 @@ reorder_keys = true  # Alphabetical ordering
 ```toml
 [[rule]]
 include = ["myproject.toml"]
-schema = "https://example.com/schema.json"
+schema.enabled = true
+schema.url = "https://example.com/schema.json"
 ```
 
 #### Windows line endings

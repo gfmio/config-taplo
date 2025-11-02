@@ -58,7 +58,7 @@ reorder_keys = false # Preserve configuration section order
 # Taplo's own configuration
 [[rule]]
 include = ["**/taplo.toml", "**/.taplo.toml"]
-schema.path = "./taplo.json"
+schema.url = "https://json.schemastore.org/taplo.json"
 schema.enabled = true
 
 # Example: Custom application configuration

@@ -1,0 +1,82 @@
+# Python Project Taplo Configuration
+# Optimized for Python projects with pyproject.toml
+#
+# Usage: Copy this file to your Python project root as `.taplo.toml` or `taplo.toml`
+
+# Include all TOML files
+include = ["**/*.toml"]
+
+# Exclude Python-specific directories
+exclude = [
+  ".venv/**",         # Virtual environment
+  "venv/**",          # Alternative venv location
+  "env/**",           # Another common venv name
+  ".tox/**",          # Tox testing environments
+  ".pytest_cache/**", # Pytest cache
+  "__pycache__/**",   # Python bytecode cache
+  "*.egg-info/**",    # Package metadata
+  "dist/**",          # Distribution builds
+  "build/**",         # Build artifacts
+  ".git/**",          # Git directory
+]
+
+# Default formatting aligned with Python tooling (Black, Ruff)
+[formatting]
+align_entries = false         # Git-friendly
+align_comments = true         # Improve readability
+array_trailing_comma = true   # Match Black/Ruff style
+array_auto_expand = true      # Expand arrays naturally
+array_auto_collapse = true    # Collapse small arrays
+compact_arrays = true         # Keep small arrays compact
+compact_inline_tables = false # Expand for readability
+compact_entries = false       # Don't compact entries
+indent_tables = false         # TOML standard
+indent_entries = false        # TOML standard
+inline_table_expand = true    # Prevent long lines
+reorder_keys = false          # Preserve section order
+reorder_arrays = false        # Preserve order
+column_width = 88             # Match Black's default line length
+allowed_blank_lines = 2       # Allow section separation
+trailing_newline = true       # POSIX compliance
+crlf = false                  # Unix line endings
+
+# pyproject.toml - Primary Python project configuration
+[[rule]]
+include = ["pyproject.toml", "**/pyproject.toml"]
+schema.enabled = true
+schema.url = "https://json.schemastore.org/pyproject.json"
+
+[rule.formatting]
+reorder_keys = false # Preserve conventional section order
+# [build-system], [project], [tool.*]
+array_trailing_comma = true # Clean diffs for dependencies
+column_width = 88           # Match Black
+
+# Poetry-specific projects
+[[rule]]
+include = ["poetry.lock"]
+# Poetry lock file - typically you don't format this, but ensure it's recognized
+
+[rule.formatting]
+reorder_keys = false # Never reorder lock file
+
+# PDM projects
+[[rule]]
+include = ["pdm.lock"]
+
+[rule.formatting]
+reorder_keys = false # Never reorder lock file
+
+# Taplo's own configuration
+[[rule]]
+include = ["**/taplo.toml", "**/.taplo.toml"]
+schema.enabled = true
+schema.url = "https://json.schemastore.org/taplo.json"
+
+# Example: Application configuration files
+# Uncomment for project-specific config files
+# [[rule]]
+# include = ["config/**/*.toml", "settings/**/*.toml"]
+# [rule.formatting]
+# align_entries = true          # Config files often benefit from alignment
+# reorder_keys = true            # Alphabetical ordering in config files

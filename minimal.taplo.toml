@@ -1,0 +1,54 @@
+# Minimal/Universal Taplo Configuration
+# A git-friendly, sensible default configuration for any project with TOML files
+#
+# Usage: Copy this file to your project root as `.taplo.toml` or `taplo.toml`
+
+# Include all TOML files by default
+include = ["**/*.toml"]
+
+# Exclude common build/dependency directories
+exclude = [
+  "target/**",       # Rust build output
+  "dist/**",         # Distribution/build output
+  "build/**",        # Build directories
+  "node_modules/**", # JavaScript dependencies
+  ".venv/**",        # Python virtual environments
+  "venv/**",         # Python virtual environments
+  ".git/**",         # Git directory
+  ".cache/**",       # Cache directories
+]
+
+# Git-friendly formatting defaults
+[formatting]
+# Alignment (minimize diff noise)
+align_entries = false # Don't align = signs (more git-friendly)
+align_comments = true # Do align comments (improves readability)
+
+# Array formatting (git-friendly)
+array_trailing_comma = true # Always add trailing comma (cleaner diffs)
+array_auto_expand = true    # Expand arrays when they grow
+array_auto_collapse = true  # Collapse small arrays
+compact_arrays = true       # Keep small arrays compact
+
+# Table formatting
+compact_inline_tables = false # Expand inline tables for readability
+compact_entries = false       # Don't compact entries
+indent_tables = false         # Follow TOML convention
+indent_entries = false        # Don't indent entries
+inline_table_expand = true    # Expand long inline tables
+
+# Key/value ordering
+reorder_keys = false   # Preserve author's key ordering
+reorder_arrays = false # Preserve array ordering
+
+# Line width and spacing
+column_width = 80       # Standard 80-character line width
+allowed_blank_lines = 2 # Allow up to 2 blank lines
+trailing_newline = true # POSIX-compliant (always end with newline)
+crlf = false            # Use LF line endings (Unix style)
+
+# Schema validation for Taplo's own config
+[[rule]]
+include = ["**/taplo.toml", "**/.taplo.toml"]
+schema.enabled = true
+schema.url = "https://json.schemastore.org/taplo.json"

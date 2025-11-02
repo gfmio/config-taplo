@@ -1,0 +1,48 @@
+{
+  // Taplo (Even Better TOML) extension settings
+  "evenBetterToml.formatter.alignEntries": false,
+  "evenBetterToml.formatter.alignComments": true,
+  "evenBetterToml.formatter.arrayTrailingComma": true,
+  "evenBetterToml.formatter.arrayAutoExpand": true,
+  "evenBetterToml.formatter.arrayAutoCollapse": true,
+  "evenBetterToml.formatter.compactArrays": true,
+  "evenBetterToml.formatter.compactInlineTables": false,
+  "evenBetterToml.formatter.compactEntries": false,
+  "evenBetterToml.formatter.columnWidth": 80,
+  "evenBetterToml.formatter.indentTables": false,
+  "evenBetterToml.formatter.indentEntries": false,
+  "evenBetterToml.formatter.inlineTableExpand": true,
+  "evenBetterToml.formatter.reorderKeys": false,
+  "evenBetterToml.formatter.reorderArrays": false,
+  "evenBetterToml.formatter.allowedBlankLines": 2,
+  "evenBetterToml.formatter.trailingNewline": true,
+  "evenBetterToml.formatter.crlf": false,
+
+  // Enable Taplo schema validation
+  "evenBetterToml.schema.enabled": true,
+
+  // Auto-associate Taplo config files with schema
+  "evenBetterToml.schema.associations": {
+    "**/*.taplo.toml": "https://json.schemastore.org/taplo.json",
+    "**/taplo.toml": "https://json.schemastore.org/taplo.json",
+    "**/.taplo.toml": "https://json.schemastore.org/taplo.json"
+  },
+
+  // Format TOML files on save
+  "[toml]": {
+    "editor.defaultFormatter": "tamasfe.even-better-toml",
+    "editor.formatOnSave": true,
+    "editor.formatOnPaste": false
+  },
+
+  // Editor settings for better TOML editing
+  "editor.rulers": [80, 100],
+  "files.insertFinalNewline": true,
+  "files.trimTrailingWhitespace": true,
+
+  // File associations
+  "files.associations": {
+    "*.taplo.toml": "toml",
+    ".taplo.toml": "toml"
+  }
+}

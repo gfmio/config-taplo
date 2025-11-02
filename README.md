@@ -339,7 +339,8 @@ align_entries = true
 ```toml
 [[rule]]
 include = ["src/config/app.toml"]
-schema = "file://./schemas/app-config.schema.json"
+schema.enabled = true
+schema.url = "file://./schemas/app-config.schema.json"
 ```
 
 ### Pattern 3: Lock File Protection

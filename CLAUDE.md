@@ -67,7 +67,7 @@ schema = "https://json.schemastore.org/pyproject.json"
 
 [[rule]]
 include = ["**/taplo.toml", "**/.taplo.toml"]
-schema = "https://taplo.tamasfe.dev/configuration/config-schema.json"
+schema = "https://json.schemastore.org/taplo.json"
 
 # Custom formatting rules per file pattern
 [[rule]]
@@ -96,7 +96,7 @@ When working with Taplo configuration:
   - Cargo.toml: `https://json.schemastore.org/cargo.json`
   - pyproject.toml: `https://json.schemastore.org/pyproject.json`
   - package.json: `https://json.schemastore.org/package.json`
-  - taplo config: `https://taplo.tamasfe.dev/configuration/config-schema.json`
+  - taplo config: `https://json.schemastore.org/taplo.json`
 - Create custom schemas for project-specific TOML files when needed
 
 ### 3. Formatting Best Practices

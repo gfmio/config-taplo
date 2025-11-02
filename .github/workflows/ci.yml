@@ -1,0 +1,50 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  validate-taplo-configs:
+    name: Validate Taplo Configurations
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Taplo
+        uses: uncenter/setup-taplo@v1
+
+      - name: Check Taplo config files are valid TOML
+        run: |
+          echo "Validating TOML syntax..."
+          for file in *.taplo.toml; do
+            if [ -f "$file" ]; then
+              echo "Checking $file..."
+              taplo lint "$file"
+            fi
+          done
+
+      - name: Check Taplo config files are formatted correctly
+        run: |
+          echo "Checking formatting..."
+          for file in *.taplo.toml; do
+            if [ -f "$file" ]; then
+              echo "Checking format of $file..."
+              taplo format --check "$file"
+            fi
+          done
+
+      - name: Validate against Taplo config schema
+        run: |
+          echo "Validating against Taplo configuration schema..."
+          SCHEMA_URL="https://json.schemastore.org/taplo.json"
+          for file in *.taplo.toml; do
+            if [ -f "$file" ]; then
+              echo "Validating $file against schema..."
+              taplo lint --schema "$SCHEMA_URL" "$file"
+            fi
+          done

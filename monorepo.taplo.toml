@@ -39,69 +39,76 @@ exclude = [
 
 # Conservative defaults that work across all project types
 [formatting]
-align_entries = false           # Git-friendly across all languages
-align_comments = true           # Improves readability
-array_trailing_comma = true     # Universal best practice
-array_auto_expand = true        # Natural array expansion
-array_auto_collapse = true      # Keep small arrays compact
-compact_arrays = true           # Compact small arrays
-compact_inline_tables = false   # Readability over compactness
-compact_entries = false         # Don't compact entries
-indent_tables = false           # TOML standard
-indent_entries = false          # TOML standard
-inline_table_expand = true      # Prevent long lines
-reorder_keys = false            # Preserve author intent
-reorder_arrays = false          # Preserve order
-column_width = 100              # Reasonable default for mixed teams
-allowed_blank_lines = 2         # Section separation
-trailing_newline = true         # POSIX compliance
-crlf = false                    # Unix line endings (adjust for Windows)
+align_entries = false         # Git-friendly across all languages
+align_comments = true         # Improves readability
+array_trailing_comma = true   # Universal best practice
+array_auto_expand = true      # Natural array expansion
+array_auto_collapse = true    # Keep small arrays compact
+compact_arrays = true         # Compact small arrays
+compact_inline_tables = false # Readability over compactness
+compact_entries = false       # Don't compact entries
+indent_tables = false         # TOML standard
+indent_entries = false        # TOML standard
+inline_table_expand = true    # Prevent long lines
+reorder_keys = false          # Preserve author intent
+reorder_arrays = false        # Preserve order
+column_width = 100            # Reasonable default for mixed teams
+allowed_blank_lines = 2       # Section separation
+trailing_newline = true       # POSIX compliance
+crlf = false                  # Unix line endings (adjust for Windows)
 
 # Rust workspace manifests
 [[rule]]
 include = ["Cargo.toml", "**/Cargo.toml"]
-schema = "https://json.schemastore.org/cargo.json"
+schema.enabled = true
+schema.url = "https://json.schemastore.org/cargo.json"
 
 [rule.formatting]
-reorder_keys = false            # Preserve Cargo.toml structure
-array_trailing_comma = true     # Clean dependency diffs
-align_entries = false           # Git-friendly
+reorder_keys = false        # Preserve Cargo.toml structure
+array_trailing_comma = true # Clean dependency diffs
+align_entries = false       # Git-friendly
 
 # Rust cargo config
 [[rule]]
 include = ["**/.cargo/config.toml", "**/.cargo/config"]
 
 [rule.formatting]
-align_entries = true            # Config files benefit from alignment
+align_entries = true # Config files benefit from alignment
 
 # Python project files
 [[rule]]
 include = ["**/pyproject.toml"]
-schema = "https://json.schemastore.org/pyproject.json"
+schema.enabled = true
+schema.url = "https://json.schemastore.org/pyproject.json"
 
 [rule.formatting]
-reorder_keys = false            # Preserve section order
-column_width = 88               # Match Black default
+reorder_keys = false # Preserve section order
+column_width = 88    # Match Black default
 
 # Python lock files
 [[rule]]
 include = ["**/poetry.lock", "**/pdm.lock"]
 
 [rule.formatting]
-reorder_keys = false            # Never reorder lock files
+reorder_keys = false # Never reorder lock files
 
 # Taplo configuration files
 [[rule]]
 include = ["**/taplo.toml", "**/.taplo.toml"]
-schema = "https://taplo.tamasfe.dev/configuration/config-schema.json"
+schema.enabled = true
+schema.url = "https://json.schemastore.org/taplo.json"
 
 # Workspace-specific configs (common pattern in monorepos)
 [[rule]]
-include = ["apps/**/config.toml", "packages/**/config.toml", "services/**/config.toml"]
+include = [
+  "apps/**/config.toml",
+  "packages/**/config.toml",
+  "services/**/config.toml",
+]
 
 [rule.formatting]
-align_entries = true            # Application configs benefit from alignment
-reorder_keys = false            # Preserve logical grouping
+align_entries = true # Application configs benefit from alignment
+reorder_keys = false # Preserve logical grouping
 
 # Infrastructure/deployment configs
 [[rule]]
@@ -114,15 +121,15 @@ include = [
 ]
 
 [rule.formatting]
-align_entries = true            # Deployment configs benefit from alignment
-reorder_keys = false            # Preserve service definitions order
+align_entries = true # Deployment configs benefit from alignment
+reorder_keys = false # Preserve service definitions order
 
 # Database configuration files
 [[rule]]
 include = ["**/database.toml", "**/db.toml"]
 
 [rule.formatting]
-align_entries = true            # Database configs benefit from alignment
+align_entries = true # Database configs benefit from alignment
 
 # Note: For fine-grained control in specific workspaces, create a .taplo.toml
 # in that workspace directory. Taplo will merge configurations hierarchically.
